@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <div id="root">
+
+        </div>
+        
+        <script src="js/react.development.js"></script>
+        <script src="js/react-dom.development.js"></script>
+        <script src="js/babel.js"></script>
+
+        <script type="text/babel">
+            const rootHandle = document.getElementById('root')
+            
+            const { useState } = React 
+
+            function RandomNumber(props) {
+               const [numbers, setNumbers] = useState([])
+                // call ack function
+                const addItems = () => {
+                    // Deep copy by Spread
+                    const random = Math.round(Math.random() *100)
+                    console.log(numbers)
+                    const newArray = [...numbers,random]
+                    setNumbers(newArray)
+                }
+
+                return (
+                    <div>
+                        <h1> Total - {numbers.length} </h1>
+                        <button onClick={addItems}> Add </button>
+                        <ul>
+                        {numbers.map((ele,i) => {
+                            return <li key={i}> {ele} </li>
+                        })}
+                        </ul>
+                    </div>
+                )
+            }
+
+            ReactDOM.render(<RandomNumber/>, rootHandle)
+        </script>
+    </body>
+</html>
